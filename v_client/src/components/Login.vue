@@ -43,7 +43,6 @@ import axios from '../http/AxiosManager'
         setTimeout(() => {
           if (this.username === '13888888888' && this.password === '13888888888' && this.confirmSuccess === true){
             //this.$router.replace("/");
-            console.log('---------------------')
             axios.getAxiosFullList({url: '/test'}).then(response => {  
               console.log('response ==>', response );  
               }).catch(err => {        
