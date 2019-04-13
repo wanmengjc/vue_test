@@ -41,7 +41,7 @@
         this.req = false;
         setTimeout(() => {
           if (this.username === '13888888888' && this.password === '13888888888' && this.confirmSuccess === true){
-            this.$router.replace("/");
+            this.$router.replace("/index");
           }else {
             this.req = true
           }
