@@ -8,4 +8,4 @@ const $ = require('../controller/test');
 
 module.exports = router;
 
- router.get('/test', $.test) // 测试
+ router.get('/test/all', $.test) // 测试

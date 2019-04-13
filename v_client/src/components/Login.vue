@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import axios from '../http/AxiosManager'
   export default {
     name: 'Login',
     data(){
@@ -41,7 +42,13 @@
         this.req = false;
         setTimeout(() => {
           if (this.username === '13888888888' && this.password === '13888888888' && this.confirmSuccess === true){
-            this.$router.replace("/");
+            //this.$router.replace("/");
+            console.log('---------------------')
+            axios.getAxiosFullList({url: '/test'}).then(response => {  
+              console.log('response ==>', response );  
+              }).catch(err => {        
+                 console.error(err.message)     
+                 })
           }else {
             this.req = true
           }

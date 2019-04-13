@@ -8,6 +8,7 @@ const config = require('./config/config');
 const bodyParser = require('body-parser');
 const log4js = require('log4js');
 const cors = require('cors');
+const fs = require('fs')
 const {init, initAutoIncrement} = require('./models/init_db');
 
 // trust proxy
@@ -41,16 +42,31 @@ app.use(bodyParser.json());
 // static-file
 app.use(express.static('./v_client/dist'));
 
-// static route
-app.get('/*', function (req, res, next) {
-    const staticRegex = /.+\.(js|css|map)/;
-    if(staticRegex.test(req.path)) {
-      next();
-    } else {
-      res.sendFile(path.join(__dirname,'./v_client/dist/index.html'));
-    }
-});
+// static route //前后分离要写这个
+// app.get('/*', function (req, res, next) {
+//     const staticRegex = /.+\.(js|css|map)/;
+//     if(staticRegex.test(req.path)) {
+//       next();
+//     } else {
+//       res.sendFile(path.join(__dirname,'./v_client/dist/index.html'));
+//     }
+// });
 
+//递归读取路由
+const readFile = rootPath => {
+  const allFile = fs.readdirSync(rootPath);
+
+  for (let file of allFile) {
+    const path = `${rootPath}/${file}`;
+
+    if (/.+\.js$/.test(file)) { // 不是文件夹
+      app.use(require(path));
+    } else if (fs.lstatSync(path).isDirectory(path)) { // 文件夹, 递归读取一次
+      readFile(path);
+    }
+  }
+};
+readFile(`${__dirname}/router`);
 // logger
 global.logger = log4js.getLogger();
 logger.level = 'info';
