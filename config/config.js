@@ -11,12 +11,12 @@ module.exports = {
   },
   // mysql
   db: {
-    database: productENV ? 'sjxdb' : 'vue_test',
-    username: productENV ? 'sjx' : 'chslab',
-    password: productENV ? 'H4!xw^qlzV' : 'Admin@chslab9',
+    database: productENV ? 'haotu' : 'haotu',
+    username: productENV ? 'chslab' : 'chslab',
+    password: productENV ? 'db@haotu!' : 'Admin@chslab9',
     option: {
       dialect: 'mysql',
-      host: productENV ? '10.0.0.13' : '192.168.31.3',
+      host: productENV ? '172.21.16.14' : '192.168.31.4',
       port: 3306,
       pool: {
         max: 100,
@@ -26,8 +26,8 @@ module.exports = {
       },
       timezone: '+08:00',
       operatorsAliases: false, // 警告提示
-       //logging: console.log // 打印sql
-      logging: false
+      //logging: console.log // 打印sql
+      logging: false,
     },
-  }
+  },
 }

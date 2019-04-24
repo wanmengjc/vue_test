@@ -40,18 +40,15 @@ import axios from '../http/AxiosManager'
     methods: {
       login(){
         this.req = false;
-        setTimeout(() => {
-          if (this.username === '13888888888' && this.password === '13888888888' && this.confirmSuccess === true){
-            //this.$router.replace("/");
-            axios.getAxiosFullList({url: '/test'}).then(response => {  
-              console.log('response ==>', response );  
+        const config = {
+          phone: this.username,
+          pwd: this.password,
+        }
+        axios.configGet({url: '/user/login', config}).then(response => {  
+              console.log('response ==>', response );
               }).catch(err => {        
                  console.error(err.message)     
-                 })
-          }else {
-            this.req = true
-          }
-        })
+              });
       },
       mousedownFn:function (e) {
         if(!this.confirmSuccess){

@@ -38,6 +38,9 @@ class AxiosManager extends BaseModule {
     }
     return this.delete(`${url}/${id}`)
   }
+  configGet({ url, config = {} }) {
+    return this.get(url, config);
+  }
 }
 
 export default new AxiosManager()

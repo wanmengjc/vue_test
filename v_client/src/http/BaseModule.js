@@ -22,6 +22,7 @@ class BaseModule {
   }
 
   get (url, config = {}) {
+    console.log('config===>', config)
     return this.$http.get(url, config)
   }
 
